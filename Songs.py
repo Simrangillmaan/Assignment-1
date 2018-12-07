@@ -1,4 +1,14 @@
 """ Songs program by Richa Sharma"""
+def load(songs):
+
+def complete_Song(songs):
+
+
+def append_Songs():
+
+
+def main_Menu():
+
 
 def main():
     file_input = open("songs.csv", "r")
@@ -22,3 +32,15 @@ W - Complete a Song
 Q - Quit    
     """.format(songs_at_start))
     user_input = input().upper()
+    while user_input != "Q":
+        if user_input == "L":
+            load(songs);
+            user_input = main_Menu();
+        elif user_input == "A":
+            songs.append(append_Songs())
+            songs.sort()
+            user_input = main_Menu();
+        elif user_input == "C":
+            songs = complete_Song(songs)
+            user_input = main_Menu();
+
