@@ -1,5 +1,19 @@
 """ Songs program by Richa Sharma"""
+
+
 def load(songs):
+    i = 0
+    not_completed = 0
+    while i < len(songs):
+        if songs[i][3] == "N":
+            print("{:1}. {:40} - {:6} ({})".format(i + 1, songs[i][0], songs[i][1], songs[i][2]) + " N")
+            not_completed = not_completed + 1
+        else:
+            print("{:1}. {:40} - {:6} ({})".format(i + 1, songs[i][0], songs[i][1], songs[i][2]) + " Y")
+        i = i + 1
+    songs_completed = len(songs) - not_completed
+    print("{} Songs learnt, {} Songs to learn ".format(songs_completed, not_completed))
+
 
 def complete_Song(songs):
 
@@ -43,4 +57,5 @@ Q - Quit
         elif user_input == "C":
             songs = complete_Song(songs)
             user_input = main_Menu();
+
 
