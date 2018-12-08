@@ -16,12 +16,28 @@ def load(songs):
 
 
 def complete_Song(songs):
+    while True:
+        try:
+            songs_completed = int(input("Enter the number of a song to mark as learned ")) - 1
+            if 'y' in songs[songs_completed]:
+                print("You have already Learned {} ".format(songs[songs_completed][0]))
+                continue
+            if songs_completed < 0 or songs_completed > len(songs) - 1:
+                print("Not a vaild input")
+                continue
+            break
+        except ValueError:
+            print("please enter a number")
+    songs[songs_completed][3] = 'y'
+    print("{} from {} Completed".format(songs[songs_completed][0], songs[songs_completed][1]))
+    return songs
 
 
 def append_Songs():
 
 
 def main_Menu():
+
 
 
 def main():
