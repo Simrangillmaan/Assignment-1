@@ -32,15 +32,27 @@ def complete_Song(songs):
     print("{} from {} Completed".format(songs[songs_completed][0], songs[songs_completed][1]))
     return songs
 
+def main_Menu():
+    print(""" Menu:
+    L - List Songs
+    A - Add a new Songs
+    W - Complete a Song
+    Q - Quit
+        """)
+    user_input = input().upper()
+    return user_input
+
 
 def append_Songs():
 
 
-def main_Menu():
+
+
 
 
 
 def main():
+
     file_input = open("songs.csv", "r")
     read_data = file_input.readlines()
     songs = []
@@ -48,7 +60,7 @@ def main():
         values = n.strip().split(',')
         songs.append(values)
     for i in range(len(songs)):
-        songs[i][1] = int(songs[i][1])
+        songs[i][1] = str(songs[i][1])
     songs.sort()
     file_input.close()
     songs_at_start = len(songs)
@@ -74,4 +86,9 @@ Q - Quit
             songs = complete_Song(songs)
             user_input = main_Menu();
 
+
+
+
+if __name__ == '__main__':
+    main()
 
