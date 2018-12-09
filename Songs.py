@@ -1,4 +1,10 @@
-""" Songs program by Richa Sharma"""
+""" Songs program by Richa Sharma
+this allows the user to see the list of songs they have, and the songs they learnt,
+and the songs they want to learn and they can add new songs also
+
+https://github.com/jc485282/Assignment_1.git"""
+
+
 
 import csv  #Importing Csv package to use Csv write
 
@@ -86,59 +92,61 @@ def append_Songs():
 
 
 def songs_to_Csv(songs,songs_at_start):
+    """This is a function that is used for saving the list value addded in append_songs function, and update the Csv file"""
     songs_added = len(songs) - songs_at_start
     songs_final = songs_added + songs_at_start
     print("""
             {} Songs saved to Songs.csv
-            Have a nice day :)
+            Have a nice day!
                 """.format(songs_final))
     for i in range(len(songs)):
         songs[i][1] = str(songs[i][1])
-    out_file = open("songs.csv", 'w',newline='')
-    writer=csv.writer(out_file)
-    writer.writerows(songs)
-    out_file.close()
+    out_file = open("songs.csv", 'w',newline='') #Opening the file in write mode, newline='' is for avoiding the blank rows while writing in the csv
+    writer=csv.writer(out_file) #passing  the file in writer function
+    writer.writerows(songs) #writing the songs list in Csv
+    out_file.close() # closing the file
 
 def main():
+    """This is the main function"""
 
-    file_input = open("Songs.csv", "r")
-    read_data = file_input.readlines()
+    file_input = open("Songs.csv", "r") #Opening songs.csv in read mode
+    read_data = file_input.readlines() # reading the data of file
 
-    songs = []
+    songs = [] #An empty list to append with the Csv data
     for n in read_data:
         values = n.strip().split(',')
-        songs.append(values)
+        songs.append(values) # appending the data in songs list
 
     for i in range(len(songs)):
         songs[i][1] = str(songs[i][1])
-    songs.sort()
-    file_input.close()
-    songs_at_start = len(songs)
+    songs.sort() #for sorting the songs list
+    file_input.close() #closing the csv file
+    songs_at_start = len(songs) # to calculate how many songs are present in the list
     print("""
 Songs To Learn 1.0 - by Richa Sharma 
-{} songs loaded""".format(songs_at_start))
+{} songs loaded""".format(songs_at_start)) # to print the number of songs that are present in the list
 
-    user_input= main_Menu()
-    while user_input != "Q":
+    user_input= main_Menu() # this variable will get the user input value from the Main menu function's return value
+    while user_input != "Q": #while loop to iterate till the input is 'Q'
 
         if user_input == "L":
-            load(songs);
-            user_input = main_Menu();
+            load(songs); #Calling the load function
+            user_input = main_Menu(); #calling the main menu function again to get input
         elif user_input == "A":
-            songs.append(append_Songs())
+            songs.append(append_Songs()) #calling the append_songs function
             songs.sort()
-            user_input = main_Menu();
+            user_input = main_Menu(); #calling the main menu function again to get input after the append method process is done
         elif user_input == "C":
-            songs = complete_Song(songs)
+            songs = complete_Song(songs) #Calling the complete_Song function
             user_input = main_Menu();
 
         else:
-            print("Invalid Input, Please input from the Choice given")
+            print("Invalid Input, Please input from the Choice given") #if the choice entered by the user is not valid
             user_input = main_Menu()
 
-    songs_to_Csv(songs, songs_at_start);
+    songs_to_Csv(songs, songs_at_start); #calling the songs_to_csv function when "Q" is entered as choice
 
-
+#calling the main function
 if __name__ == '__main__':
     main()
 
