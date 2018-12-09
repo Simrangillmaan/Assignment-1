@@ -36,14 +36,18 @@ def main_Menu():
     print(""" Menu:
     L - List Songs
     A - Add a new Songs
-    W - Complete a Song
+    C - Complete a Song
     Q - Quit
         """)
     user_input = input().upper()
     return user_input
 
-
 def append_Songs():
+
+
+
+
+
 
 
 
@@ -66,14 +70,9 @@ def main():
     songs_at_start = len(songs)
     print("""
 Songs To Learn 1.0 - by Richa Sharma 
-{} songs loaded
-Menu:
-L - List songs
-A - Add new Songs
-W - Complete a Song
-Q - Quit    
-    """.format(songs_at_start))
-    user_input = input().upper()
+{} songs loaded""".format(songs_at_start))
+
+    user_input= main_Menu()
     while user_input != "Q":
         if user_input == "L":
             load(songs);
