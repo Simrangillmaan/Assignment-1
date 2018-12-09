@@ -9,7 +9,14 @@ https://github.com/jc485282/Assignment_1.git"""
 import csv  #Importing Csv package to use Csv write
 
 def load(songs):
-    """Load function to load the songs from the CSV"""
+    """Load function to load the songs from the CSV
+    Pseudocode
+    while i is lesser than length of song list
+    if song[i][third index] is equal to No
+    print the songs with not learnt
+    else print the songs that are learnt with astrisk in after serial
+    print the number of songs that are with yes and songs that are with no, ie learnt and not learnt"""
+
     i = 0
     not_completed = 0
     while i < len(songs):
@@ -25,10 +32,23 @@ def load(songs):
 
 def complete_Song(songs):
     """This is function to complete or learn the song, this asks user for the input of song number, this function gives exception like if a song that is already learnt
-    is selected again to learn, throws a message showing that you have already learnt this song"""
+    is selected again to learn, throws a message showing that you have already learnt this song
+    PseudoCode
+     while True
+     try if input exist is in songs completed,
+     if songs already completed, ie with y in last index of list
+     print message that already learned
+     if the input is invalid
+     print message that input is invalid
+     throw exception that please enter a number
+      else assign y to last index of the song selected
+      print message song name with song is completed
+      return songs """
     while True:
         try:
+
             songs_completed = int(input("Enter the number of a song to mark as learned ")) - 1
+
             if 'y' in songs[songs_completed]:
                 print("You have already Learned {} ".format(songs[songs_completed][0]))
                 continue
@@ -137,7 +157,19 @@ Songs To Learn 1.0 - by Richa Sharma
             songs.sort()
             user_input = main_Menu(); #calling the main menu function again to get input after the append method process is done
         elif user_input == "C":
-            songs = complete_Song(songs) #Calling the complete_Song function
+            #checking for exception if all songs are already learnt
+            y_count = 0
+
+            for i in range(len(songs)):
+                if 'y' in songs[i][3]:
+                    y_count = y_count + 1
+            if y_count == len(songs):
+                print("There are no songs to learn")
+
+            else:
+
+                songs = complete_Song(songs) #Calling the complete_Song function incase there are songs that are to be learnt
+
             user_input = main_Menu();
 
         else:
