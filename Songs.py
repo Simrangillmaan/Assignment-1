@@ -6,10 +6,10 @@ def load(songs):
     not_completed = 0
     while i < len(songs):
         if songs[i][3] == "N":
-            print("{:1}. {:40} - {:6} ({})".format(i + 1, songs[i][0], songs[i][1], songs[i][2]) + " N")
+            print("{:2}.  {:40} - {:8} ({})".format(i + 1, songs[i][0], songs[i][1], songs[i][2]))
             not_completed = not_completed + 1
         else:
-            print("{:1}. {:40} - {:6} ({})".format(i + 1, songs[i][0], songs[i][1], songs[i][2]) + " Y")
+            print("{:2}. *{:40} - {:8} ({})".format(i + 1, songs[i][0], songs[i][1], songs[i][2]) )
         i = i + 1
     songs_completed = len(songs) - not_completed
     print("{} Songs learnt, {} Songs to learn ".format(songs_completed, not_completed))
@@ -28,7 +28,7 @@ def complete_Song(songs):
             break
         except ValueError:
             print("please enter a number")
-    songs[songs_completed][3] = 'y'
+    songs[songs_completed][3] = 'Y'
     print("{} from {} Completed".format(songs[songs_completed][0], songs[songs_completed][1]))
     return songs
 
@@ -43,7 +43,36 @@ def main_Menu():
     return user_input
 
 def append_Songs():
+    new_Song = []
+    song_Name = str(input("Title: "))
 
+    while True:
+        try:
+             song_Year = int(input("Year: "))
+             if  song_Year < 0:
+                print("Number must be >= 0")
+                continue
+             break
+        except ValueError:
+            print("Invalid input; enter a valid number")
+    while True:
+        try:
+            song_Artist = str(input("Artist: "))
+            if song_Artist == '' or song_Artist == ' ':
+                print("Input can not be blank")
+                continue
+            if '  ' in song_Artist:
+                print("Input contains too many spaces")
+            break
+        except ValueError:
+            print("Input can not be a number")
+
+    new_Song.append(song_Name)
+    new_Song.append( song_Artist)
+    new_Song.append(song_Year)
+    new_Song.append('N')
+    print("{} by {} ({}) added to Songs list".format(song_Name, song_Artist, song_Year))
+    return new_Song
 
 
 
@@ -74,6 +103,7 @@ Songs To Learn 1.0 - by Richa Sharma
 
     user_input= main_Menu()
     while user_input != "Q":
+
         if user_input == "L":
             load(songs);
             user_input = main_Menu();
