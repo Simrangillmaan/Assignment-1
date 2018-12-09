@@ -30,6 +30,10 @@ def load(songs):
     print("{} Songs learnt, {} Songs to learn ".format(songs_completed, not_completed))
 
 
+
+
+
+
 def complete_Song(songs):
     """This is function to complete or learn the song, this asks user for the input of song number, this function gives exception like if a song that is already learnt
     is selected again to learn, throws a message showing that you have already learnt this song
@@ -62,6 +66,12 @@ def complete_Song(songs):
     print("{} from {} Completed".format(songs[songs_completed][0], songs[songs_completed][1]))
     return songs
 
+
+
+
+
+
+
 def main_Menu():
     """This is the function to show the menu to the user, user can Enter the choice according to his need,
      this function returns user input"""
@@ -73,6 +83,12 @@ def main_Menu():
         """)
     user_input = input().upper() #Getting the choice input from the user and converting it to upper case.
     return user_input
+
+
+
+
+
+
 
 def append_Songs():
     """This function is used for adding new songs to list"""
@@ -111,6 +127,10 @@ def append_Songs():
     return new_Song
 
 
+
+
+
+
 def songs_to_Csv(songs,songs_at_start):
     """This is a function that is used for saving the list value addded in append_songs function, and update the Csv file"""
     songs_added = len(songs) - songs_at_start
@@ -125,6 +145,11 @@ def songs_to_Csv(songs,songs_at_start):
     writer=csv.writer(out_file) #passing  the file in writer function
     writer.writerows(songs) #writing the songs list in Csv
     out_file.close() # closing the file
+
+
+
+
+    
 
 def main():
     """This is the main function"""
